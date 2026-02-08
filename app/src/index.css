@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Sans Font */
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://cdn.fontshare.com/wf/EKWGXLV7UVBVNB46OA635AWSKJ3ZJ24S/BCIVBFFP4QIKM3WSG24FQMQMNSMQIVUC/RLDYXVMVKPLMWQZ2VK62OD6INURQBZA5.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://cdn.fontshare.com/wf/EKWGXLV7UVBVNB46OA635AWSKJ3ZJ24S/BCIVBFFP4QIKM3WSG24FQMQMNSMQIVUC/C74P3HN4VCSYQ37HTCSYCYEZSHGCBZIC.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://cdn.fontshare.com/wf/EKWGXLV7UVBVNB46OA635AWSKJ3ZJ24S/BCIVBFFP4QIKM3WSG24FQMQMNSMQIVUC/Q5UCHQXMJ3DENVZJ3LQJ4R4QYTXE4ZFO.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Alegreya Font */
+@font-face {
+  font-family: 'Alegreya';
+  src: url('https://fonts.gstatic.com/s/alegreya/v35/4UacrEBBsBhlBjvfkQjt71kZfyBzPgNGx5U5Z4CGxAo.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alegreya';
+  src: url('https://fonts.gstatic.com/s/alegreya/v35/4UabrIlVpDoylVjr6ljXd86t2kSBX9P1Kw.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* Light Mode Colors */
+    --background: #F5F5F3;
+    --foreground: #0E0E10;
+    --muted: #E8E8E6;
+    --muted-foreground: #5A5A5F;
+    --accent: #00E5FF;
+    --accent-foreground: #0E0E10;
+    --border: rgba(14, 14, 16, 0.1);
+    --input: rgba(14, 14, 16, 0.08);
+    --ring: #00E5FF;
+    --primary: #0E0E10;
+    --primary-foreground: #F5F5F3;
+    --secondary: #E8E8E6;
+    --secondary-foreground: #0E0E10;
+    --card: #FFFFFF;
+    --card-foreground: #0E0E10;
+    --popover: #FFFFFF;
+    --popover-foreground: #0E0E10;
+    --destructive: #DC2626;
+    --destructive-foreground: #FFFFFF;
+    /* Logo filter - no inversion needed in light mode (dark logo on light bg) */
+    --logo-filter: none;
+  }
+
+  .dark {
+    /* Dark Mode Colors */
+    --background: #0E0E10;
+    --foreground: #F5F5F3;
+    --muted: #1A1A1C;
+    --muted-foreground: #A1A1A8;
+    --accent: #00E5FF;
+    --accent-foreground: #0E0E10;
+    --border: rgba(245, 245, 243, 0.1);
+    --input: rgba(245, 245, 243, 0.08);
+    --ring: #00E5FF;
+    --primary: #F5F5F3;
+    --primary-foreground: #0E0E10;
+    /* Logo filter - invert for dark mode (light logo on dark bg) */
+    --logo-filter: invert(1);
+    --secondary: #1A1A1C;
+    --secondary-foreground: #F5F5F3;
+    --card: #1A1A1C;
+    --card-foreground: #F5F5F3;
+    --popover: #1A1A1C;
+    --popover-foreground: #F5F5F3;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'General Sans', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Alegreya', Georgia, serif;
+    font-weight: 500;
+  }
+}
+
+/* Grid texture for hero sections */
+.grid-texture {
+  background-image: 
+    linear-gradient(rgba(14, 14, 16, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 14, 16, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.dark .grid-texture {
+  background-image: 
+    linear-gradient(rgba(245, 245, 243, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 245, 243, 0.06) 1px, transparent 1px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+  opacity: 0.3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Form styles */
+input, textarea, select {
+  @apply bg-input border-border text-foreground;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply outline-none ring-2 border-ring;
+  --tw-ring-color: var(--ring);
+  --tw-ring-opacity: 0.3;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 229, 255, 0.2);
+}
